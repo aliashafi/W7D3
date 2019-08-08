@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Balloon</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+
+  <% if logged_in? %>
+    <form action="<%=session_url%>" method='POST'>
+    <p>Log out here!!!</p>
+      <input type="hidden" name="_method" value='DELETE'>
+      <input type="submit" value='Log out'>
+    </form>
+  <% end %>
+
+    <% if flash[:errors] %>
+      <% flash[:errors].each do |error| %>
+      <p><%= error %></p>
+      <% end %>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
